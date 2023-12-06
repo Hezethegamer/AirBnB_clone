@@ -1,19 +1,25 @@
 #!/usr/bin/python3
-""" Function that compress a folder """
-from datetime import datetime
+"""Compress web static package
+"""
 from fabric.api import local
+from datetime import datetime
 
 
 def do_pack():
+    """Function to compress directory
+
+    Return: path to archive on success; None on fail
     """
-    must return the archive path if the archive has been correctly
-    generated. Otherwise, it should return None
-    """
-    try:
-        local("mkdir -p versions")
-        date = datetime.now().strftime("%Y%m%d%H%M%S")
-        rout = "versions/web_static_{}.tgz".format(date)
-        _gzip = local("tar -cvzf {} web_static".format(rout))
-        return rout
-    except Exception:
-        return None
+    # Get current time
+    now = datetime.now()
+    now = now.strftime('%Y%m%d%H%M%S')
+    archive_path = 'versions/web_static_' + now + '.tgz'
+
+    # Create archive
+    local('mkdir -p versions/')
+    result = local('tar -cvzf {} web_static/'.format(archive_path))
+
+    # Check if archiving was successful
+    if result.succeeded:
+        return archive_path
+    return None
