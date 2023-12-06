@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-<<<<<<< HEAD
 # Set up server file system for deployment
 
 # install nginx
@@ -56,4 +55,3 @@ sed -i '51 i \\n\tlocation /hbnb_static {\n\talias /data/web_static/current;\n\t
 # (ex: https://mydomainname.tech/hbnb_static).
 # Don’t forget to restart Nginx after updating the configuration:
 service nginx restart
->>>>>>> 42669bbb754c93258fe08819caa48b3c3ce04cc3
